@@ -1,4 +1,3 @@
-
 from collections import deque
 from itertools import product
 
@@ -34,10 +33,12 @@ def solve(n):
         if neigh_sum > n:
             return neigh_sum
 
+
 if __name__ == "__main__":
     import sys
+
     if len(sys.argv) == 1:
-        n = 347991
+        n = 347_991
     else:
         n = int(sys.argv[1])
 

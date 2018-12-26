@@ -1,4 +1,3 @@
-
 from solutions2017.day7.part1 import solve as solve1
 from solutions2017.day7.part2 import solve as solve2
 
@@ -14,11 +13,13 @@ tknk (41) -> ugml, padx, fwft
 jptl (61)
 ugml (68) -> gyxo, ebii, jptl
 gyxo (61)
-cntj (57)""".split("\n")
+cntj (57)""".split(
+    "\n"
+)
 
 
 def test_part1():
-    assert solve1(inp) == 'tknk'
+    assert solve1(inp) == "tknk"
 
 
 def test_part2():

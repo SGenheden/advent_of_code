@@ -1,5 +1,3 @@
-
-
 def solve(lines):
     programs = {}
 
@@ -23,7 +21,6 @@ def solve(lines):
 
 if __name__ == "__main__":
     import fileinput
+
     name = solve([line for line in fileinput.input()])
     print(f"The bottom program is {name}")
-
-

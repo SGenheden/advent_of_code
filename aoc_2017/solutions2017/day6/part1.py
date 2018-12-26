@@ -1,5 +1,3 @@
-
-
 def solve(banks):
 
     visited = {tuple(banks): None}

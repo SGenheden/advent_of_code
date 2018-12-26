@@ -1,4 +1,3 @@
-
 def solve(word_list):
     nvalid = 0
     for line in word_list:
@@ -11,5 +10,6 @@ def solve(word_list):
 
 if __name__ == "__main__":
     import fileinput
+
     nvalid = solve([line for line in fileinput.input()])
     print(f"There are {nvalid} password phrases")

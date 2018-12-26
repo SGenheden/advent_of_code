@@ -1,18 +1,21 @@
-
 from solutions2017.day4.part1 import solve as solve1
 from solutions2017.day4.part2 import solve as solve2
 
 
-inp1="""aa bb cc dd ee
+inp1 = """aa bb cc dd ee
 aa bb cc dd aa
-aa bb cc dd aaa""".split("\n")
+aa bb cc dd aaa""".split(
+    "\n"
+)
 
 
-inp2="""abcde fghij
+inp2 = """abcde fghij
 abcde xyz ecdab
 a ab abc abd abf abj
 iiii oiii ooii oooi oooo
-oiii ioii iioi iiio""".split("\n")
+oiii ioii iioi iiio""".split(
+    "\n"
+)
 
 
 def test_part1():

@@ -1,9 +1,10 @@
-
 from collections import Counter
 
 
 def balance_weights(parent, programs):
-    weights = [children_weight(child, programs) for child in programs[parent]["children"]]
+    weights = [
+        children_weight(child, programs) for child in programs[parent]["children"]
+    ]
     counts = Counter(weights)
 
     if len(counts) == 1:
@@ -48,7 +49,11 @@ def solve(lines):
             for subprog in cols[1].split(", "):
                 programs[program]["children"].append(subprog)
                 if subprog not in programs:
-                    programs[subprog] = {"children": [], "weight": None, "ischild": False}
+                    programs[subprog] = {
+                        "children": [],
+                        "weight": None,
+                        "ischild": False,
+                    }
                 programs[subprog]["ischild"] = True
 
     parent = None
@@ -60,7 +65,8 @@ def solve(lines):
 
     for program, specs in programs.items():
         if "old_weight" in specs:
-            return specs['weight']
+            return specs["weight"]
+
 
 test = """pbga (66)
 xhth (57)
@@ -74,11 +80,14 @@ tknk (41) -> ugml, padx, fwft
 jptl (61)
 ugml (68) -> gyxo, ebii, jptl
 gyxo (61)
-cntj (57)""".split("\n")
+cntj (57)""".split(
+    "\n"
+)
 
 
 if __name__ == "__main__":
     import fileinput
+
     n = solve([line for line in fileinput.input()])
-    #n = solve(test)
+    # n = solve(test)
     print(f"The new weight would be {n}")

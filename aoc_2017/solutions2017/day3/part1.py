@@ -23,14 +23,17 @@ def solve(n):
         taken[xy] = True
         current = xy
 
-    dist = abs(coordinates[0][0] - coordinates[-1][0]) + abs(coordinates[0][1] - coordinates[-1][1])
+    dist = abs(coordinates[0][0] - coordinates[-1][0]) + abs(
+        coordinates[0][1] - coordinates[-1][1]
+    )
     return dist
 
 
 if __name__ == "__main__":
     import sys
+
     if len(sys.argv) == 1:
-        n = 347991
+        n = 347_991
     else:
         n = int(sys.argv[1])
 

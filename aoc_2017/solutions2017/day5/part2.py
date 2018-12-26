@@ -1,4 +1,3 @@
-
 def solve(instructions):
     current = 0
     nsteps = 0
@@ -12,6 +11,7 @@ def solve(instructions):
 
 if __name__ == "__main__":
     import fileinput
+
     instructions = list(map(int, [line.strip() for line in fileinput.input()]))
     nsteps = solve(instructions)
     print(f"Got out in {nsteps} steps")

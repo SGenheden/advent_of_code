@@ -1,4 +1,3 @@
-
 from solutions2017.day1.part1 import solve as solve1
 from solutions2017.day1.part2 import solve as solve2
 

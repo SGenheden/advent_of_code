@@ -19,6 +19,7 @@ def solve(rows):
 
 if __name__ == "__main__":
     import fileinput
+
     rows = [line for line in fileinput.input()]
     checksum = solve(rows)
     print(f"Checksum is {checksum}")
