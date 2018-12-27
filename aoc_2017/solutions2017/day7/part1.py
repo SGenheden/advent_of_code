@@ -1,22 +1,9 @@
+from solutions2017.day7.utils import parse_program_tree, find_root
+
+
 def solve(lines):
-    programs = {}
-
-    for line in lines:
-        cols = line.strip().split(" -> ")
-        program, nr = cols[0].split()
-        if program not in programs:
-            programs[program] = {"children": [], "nr": None, "ischild": False}
-        programs[program]["nr"] = int(nr[1:-1])
-        if len(cols) > 1:
-            for subprog in cols[1].split(", "):
-                programs[program]["children"].append(subprog)
-                if subprog not in programs:
-                    programs[subprog] = {"children": [], "nr": None, "ischild": False}
-                programs[subprog]["ischild"] = True
-
-    for program, spec in programs.items():
-        if not spec["ischild"]:
-            return program
+    programs = parse_program_tree(lines)
+    return find_root(programs)
 
 
 if __name__ == "__main__":

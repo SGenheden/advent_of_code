@@ -1,5 +1,7 @@
 from collections import Counter
 
+from solutions2017.day7.utils import parse_program_tree, find_root
+
 
 def balance_weights(parent, programs):
     weights = [
@@ -37,30 +39,8 @@ def children_weight(parent, programs):
 
 
 def solve(lines):
-    programs = {}
-
-    for line in lines:
-        cols = line.strip().split(" -> ")
-        program, nr = cols[0].split()
-        if program not in programs:
-            programs[program] = {"children": [], "weight": None, "ischild": False}
-        programs[program]["weight"] = int(nr[1:-1])
-        if len(cols) > 1:
-            for subprog in cols[1].split(", "):
-                programs[program]["children"].append(subprog)
-                if subprog not in programs:
-                    programs[subprog] = {
-                        "children": [],
-                        "weight": None,
-                        "ischild": False,
-                    }
-                programs[subprog]["ischild"] = True
-
-    parent = None
-    for program, spec in programs.items():
-        if not spec["ischild"]:
-            parent = program
-            break
+    programs = parse_program_tree(lines)
+    parent = find_root(programs)
     balance_weights(parent, programs)
 
     for program, specs in programs.items():
@@ -68,26 +48,8 @@ def solve(lines):
             return specs["weight"]
 
 
-test = """pbga (66)
-xhth (57)
-ebii (61)
-havc (66)
-ktlj (57)
-fwft (72) -> ktlj, cntj, xhth
-qoyq (66)
-padx (45) -> pbga, havc, qoyq
-tknk (41) -> ugml, padx, fwft
-jptl (61)
-ugml (68) -> gyxo, ebii, jptl
-gyxo (61)
-cntj (57)""".split(
-    "\n"
-)
-
-
 if __name__ == "__main__":
     import fileinput
 
     n = solve([line for line in fileinput.input()])
-    # n = solve(test)
     print(f"The new weight would be {n}")

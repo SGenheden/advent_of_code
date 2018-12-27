@@ -1,15 +1,10 @@
+from solutions2017.day6.utils import iter_banks
+
+
 def solve(banks):
 
     visited = {tuple(banks): 0}
-    n = 0
-    while True:
-        maxval = max(banks)
-        maxi = banks.index(maxval)
-        banks[maxi] = 0
-        for i in range(maxi + 1, maxi + maxval + 1):
-            banks[i % len(banks)] += 1
-        n += 1
-        banks_tuple = tuple(banks)
+    for n, banks_tuple in enumerate(iter_banks(banks), 1):
         if banks_tuple in visited:
             return n - visited[banks_tuple]
         else:
@@ -17,7 +12,10 @@ def solve(banks):
 
 
 if __name__ == "__main__":
-    # banks = [0, 2, 7, 0]
-    banks = list(map(int, "14	0	15	12	11	11	3	5	1	6	8	4	9	1	8	4".strip().split()))
+    import fileinput
+
+    banks = list(
+        map(int, "".join(line.strip() for line in fileinput.input()).strip().split())
+    )
     n = solve(banks)
     print(f"Number of cycles in the infinity loop are {n}")
