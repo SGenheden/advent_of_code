@@ -1,4 +1,4 @@
-from solutions2017.day10.utils import iter_knot_rounds
+from solutions2017.utils.knot_hash import iter_knot_rounds
 
 
 def solve(n, lengths):

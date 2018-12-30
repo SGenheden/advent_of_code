@@ -4,13 +4,11 @@ from solutions2017.day12.utils import parse_input, find_clique
 def solve(lines):
     graph = parse_input(lines)
     ncliques = 0
-    taken = {k: False for k in graph.keys()}
+    taken = {}
     for program in graph.keys():
-        if taken[program]:
+        if program in taken:
             continue
-        clique = find_clique(program, graph, {})
-        for id in clique:
-            taken[id] = True
+        find_clique(program, graph, taken)
         ncliques += 1
     return ncliques
 

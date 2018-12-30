@@ -4,7 +4,6 @@ def find_clique(root, graph, visited):
         visited[root] = None
         for child in graph[root]:
             programs.update(find_clique(child, graph, visited))
-        return programs
     return programs
 
 
