@@ -1,21 +1,17 @@
-from solutions2017.day16.utils import iter_moves
+from solutions2017.day16.utils import iter_dance
 
 
 def solve(moves, init_programs=None, n_limit=1_000_000_000):
     visited = {}
-    n = 0
-    while n < n_limit:
-        programs = ""
-        for programs in iter_moves(moves, init_programs):
-            continue
+    for n, programs in enumerate(iter_dance(moves, init_programs)):
         if programs in visited:
             period = n - visited[programs]
             if (n_limit - 1) % period == visited[programs]:
                 return programs
         else:
             visited[programs] = n
-        init_programs = list(programs)
-        n += 1
+        if n == n_limit:
+            break
 
 
 if __name__ == "__main__":

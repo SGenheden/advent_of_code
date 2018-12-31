@@ -1,11 +1,8 @@
-from solutions2017.day16.utils import iter_moves
+from solutions2017.day16.utils import iter_dance
 
 
 def solve(moves, init_programs=None):
-    programs = ""
-    for programs in iter_moves(moves, init_programs):
-        continue
-    return programs
+    return next(iter_dance(moves, init_programs))
 
 
 if __name__ == "__main__":

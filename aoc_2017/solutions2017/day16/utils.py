@@ -27,9 +27,10 @@ def partner_move(move, programs):
 moves_lookup = {"s": spin_move, "x": exchange_move, "p": partner_move}
 
 
-def iter_moves(moves, programs=None):
+def iter_dance(moves, programs=None):
     if programs is None:
         programs = list(ascii_lowercase[:16])
-    for move in moves:
-        programs = moves_lookup[move[0]](move, programs)
+    while True:
+        for move in moves:
+            programs = moves_lookup[move[0]](move, programs)
         yield "".join(programs)
