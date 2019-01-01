@@ -1,4 +1,4 @@
-from solutions2017.day18.utils import AssemblyBase
+from solutions2017.utils.assembly import AssemblyBase
 
 
 class CommAssembly(AssemblyBase):
