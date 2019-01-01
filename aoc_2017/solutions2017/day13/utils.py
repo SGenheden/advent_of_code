@@ -21,6 +21,17 @@ class Firewall:
                 spec["dir"] = 1
             spec["pos"] += spec["dir"]
 
+    def move_many(self, n):
+        for _, spec in self.scanners.items():
+            n_to_round_trip = (spec["range"]-2)*2+2
+            n_extra = n % n_to_round_trip
+            for _ in range(n_extra):
+                if spec["pos"] == spec["range"] - 1:
+                    spec["dir"] = -1
+                elif spec["pos"] == 0:
+                    spec["dir"] = 1
+                spec["pos"] += spec["dir"]
+
     def reset(self):
         for _, spec in self.scanners.items():
             spec["pos"] = 0

@@ -1,10 +1,11 @@
+import sys
+
 from solutions2017.day13.utils import Firewall
 
 
 def is_caught(firewall, delay):
     firewall.reset()
-    for _ in range(delay):
-        firewall.move()
+    firewall.move_many(delay)
     for layer, scanner in firewall.iter_steps():
         if scanner is not None and scanner["pos"] == 0:
             return True
@@ -18,7 +19,9 @@ def solve(spec):
         if not is_caught(firewall, delay):
             return delay
         delay += 1
-
+        if delay % 100000 == 0:
+            sys.stdout.write(f"{delay}\n")
+            sys.stdout.flush()
 
 if __name__ == "__main__":
     import fileinput
