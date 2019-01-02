@@ -23,7 +23,7 @@ class Firewall:
 
     def move_many(self, n):
         for _, spec in self.scanners.items():
-            n_to_round_trip = (spec["range"]-2)*2+2
+            n_to_round_trip = (spec["range"] - 2) * 2 + 2
             n_extra = n % n_to_round_trip
             for _ in range(n_extra):
                 if spec["pos"] == spec["range"] - 1:

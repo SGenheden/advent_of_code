@@ -1,18 +1,20 @@
-from solutions2017.utils.assembly import AssemblyBase
+"""
+Solution that is a optimized version of part2_unopt.py
+"""
 
+b = 81
+b *= 100
+b += 100_000
+c = b + 17000
+h = 0
 
-def solve(instructions):
-    a = AssemblyBase()
-    a.registers["a"] = 1
-    for n, registers in enumerate(a.execute(instructions, yield_registers=True)):
-        print(",".join(str(registers[r]) for r in "abcdefgh"))
-        if n > 100:
+while True:
+    for n in range(2, b):
+        if b % n == 0:
+            h += 1
             break
-    return a.registers["h"]
+    if b == c:
+        break
+    b += 17
 
-
-if __name__ == "__main__":
-    import fileinput
-
-    instructions = [line for line in fileinput.input()]
-    print(f"The value of register h is {solve(instructions)}")
+print(f"The value of h is {h}")

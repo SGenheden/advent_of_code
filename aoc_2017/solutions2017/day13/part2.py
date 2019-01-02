@@ -19,9 +19,10 @@ def solve(spec):
         if not is_caught(firewall, delay):
             return delay
         delay += 1
-        if delay % 100000 == 0:
+        if delay % 100_000 == 0:
             sys.stdout.write(f"{delay}\n")
             sys.stdout.flush()
+
 
 if __name__ == "__main__":
     import fileinput
