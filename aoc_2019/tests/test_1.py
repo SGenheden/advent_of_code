@@ -13,4 +13,3 @@ def test_part2():
     assert solve2(14) == 2
     assert solve2(1969) == 966
     assert solve2(100756) == 50346
-

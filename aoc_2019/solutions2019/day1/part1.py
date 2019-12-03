@@ -1,5 +1,6 @@
 import math
 
+
 def solve(number):
     result = float(number) / 3
     result = math.floor(result)
