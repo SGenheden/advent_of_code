@@ -1,10 +1,8 @@
 from solutions2019.utils.intcode import intcode
 
 
-def solve(sequence, val1, val2):
-    sequence[1] = val1
-    sequence[2] = val2
-    return next(intcode(sequence))[0]
+def solve(sequence, inp):
+    return next(intcode(sequence, input_list=[inp]))[0]
 
 
 if __name__ == "__main__":
@@ -13,5 +11,5 @@ if __name__ == "__main__":
     sequence = [
         int(number) for number in "".join(line for line in fileinput.input()).split(",")
     ]
-    output = solve(sequence, 12, 2)
+    seq, output, prev_optcode = solve(sequence, 1)
     print(f"Solution is {output}")
