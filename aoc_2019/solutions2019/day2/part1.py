@@ -1,10 +1,11 @@
-from solutions2019.utils.intcode import intcode
+from solutions2019.utils.intcode import intcode_passthrough
 
 
 def solve(sequence, val1, val2):
     sequence[1] = val1
     sequence[2] = val2
-    return next(intcode(sequence))[0]
+    intcode_passthrough(sequence)
+    return sequence[0]
 
 
 if __name__ == "__main__":

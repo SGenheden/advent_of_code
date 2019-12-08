@@ -1,8 +1,8 @@
-from solutions2019.utils.intcode import intcode
+from solutions2019.utils.intcode import intcode_passthrough
 
 
 def solve(sequence, inp):
-    return next(intcode(sequence, input_list=[inp]))[0]
+    return intcode_passthrough(sequence, inp)
 
 
 if __name__ == "__main__":
@@ -11,5 +11,5 @@ if __name__ == "__main__":
     sequence = [
         int(number) for number in "".join(line for line in fileinput.input()).split(",")
     ]
-    seq, output, prev_optcode = solve(sequence, 1)
+    output = solve(sequence, 1)
     print(f"Solution is {output}")

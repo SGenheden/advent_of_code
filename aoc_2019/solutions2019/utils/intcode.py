@@ -1,4 +1,4 @@
-def intcode(sequence, input_list=None):
+def intcode(sequence):
     i = 0
     output = None
     while True:
@@ -6,10 +6,7 @@ def intcode(sequence, input_list=None):
         optcode = int(instr[:2][::-1])
         modes = instr[2:]
         if optcode == 99:  # halt
-            if output is not None:
-                yield (output,)
-            else:
-                yield (sequence[0],)
+            return output
         elif optcode == 1:  # addition
             val1 = sequence[sequence[i + 1]] if modes[0] == "0" else sequence[i + 1]
             val2 = sequence[sequence[i + 2]] if modes[1] == "0" else sequence[i + 2]
@@ -23,10 +20,7 @@ def intcode(sequence, input_list=None):
                 sequence[sequence[i + 3]] = val1 * val2
             i += 4
         elif optcode == 3:  # input
-            if input_list:
-                inp = input_list.pop(0)
-            else:
-                inp = yield output
+            inp = yield output
             if modes[0] == "0":
                 sequence[sequence[i + 1]] = inp
             i += 2
@@ -62,7 +56,16 @@ def intcode(sequence, input_list=None):
             if modes[2] == "0":
                 sequence[sequence[i + 3]] = 1 if val1 == val2 else 0
             i += 4
-        print(sequence)
+
+
+def intcode_passthrough(sequence, *input_signals):
+    program = intcode(sequence)
+    try:
+        next(program)
+        for signal in input_signals:
+            program.send(signal)
+    except StopIteration as stop:
+        return stop.value
 
 
 def str2sequence(str_):

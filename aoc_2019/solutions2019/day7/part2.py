@@ -6,10 +6,9 @@ from solutions2019.utils.intcode import intcode
 def create_amps(program_sequence, *phases):
     amps = []
     for phase in phases:
-        amp = {"phase": phase, "prog": None, "final": None}
-        amp["prog"] = intcode(list(program_sequence))
-        next(amp["prog"])
-        amp["prog"].send(phase)
+        amp = intcode(list(program_sequence))
+        next(amp)
+        amp.send(phase)
         amps.append(amp)
     return amps
 
@@ -22,9 +21,10 @@ def solve(program_sequence):
         amps = create_amps(program_sequence, p1, p2, p3, p4, p5)
         nfinished = 0
         for amp in itertools.cycle(amps):
-            signal = amp["prog"].send(signal)
-            if isinstance(signal, tuple):
-                signal = signal[0]
+            try:
+                signal = amp.send(signal)
+            except StopIteration as stop:
+                signal = stop.value
                 nfinished += 1
                 if nfinished == 5:
                     break
