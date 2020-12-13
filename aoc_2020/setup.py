@@ -7,4 +7,5 @@ setup(
     author_email="samuel.genheden@gmail.com",
     license="GNU General Public Licence",
     packages=["solutions2020"],
+    install_requires=["sympy", "black"],
 )
